@@ -1,0 +1,6 @@
+streamlit>=1.30,<2
+pytest>=7,<10
+
+sqlalchemy>=2,<3
+psycopg[binary]>=3,<4
+python-dotenv>=1,<2

@@ -1,0 +1,6 @@
+{
+  "country": "India",
+  "cities": ["Bengaluru", "Hyderabad", "Pune"],
+  "allow_remote_india": true,
+  "target_titles": ["Product Owner", "Technical Product Owner", "Senior Product Owner", "Technical Product Manager", "Data Product Manager", "AI Product Manager"]
+}

@@ -1,0 +1,38 @@
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.toml
+.streamlit/secrets.toml
+
+# Python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Local databases and backups
+*.sqlite3
+*.sqlite
+*.db
+*.dump
+*.backup.*
+*.sql
+
+# Private candidate information
+candidate_profile.json
+resumes/
+*.pdf
+*.docx
+
+# Operating system and IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Local AI development agents
+.agents/
