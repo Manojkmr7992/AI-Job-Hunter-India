@@ -91,8 +91,61 @@ def analyze_job(title: str, description: str, profile: dict) -> dict:
     weights = {'resume_documented': 1.0, 'self_reported': 0.25, 'missing': 0.0}
     score = round(100 * sum(weights[e['status']] for e in evidence) / len(evidence)) if evidence else 0
     resume = choose_resume(title, profile)
+
+    # Local import avoids a circular import with jd_requirements.
+    from jd_requirements import extract_requirements
+
+    classifications = {
+        item['requirement']: item['classification']
+        for item in extract_requirements(description)
+    }
+
+    category_weights = {
+        'required': 3.0,
+        'preferred': 1.0,
+        'unspecified': 1.0,
+    }
+
+    enhanced_evidence = [
+        {
+            **item,
+            'classification': classifications.get(
+                item['requirement'], 'unspecified'
+            ),
+        }
+        for item in evidence
+    ]
+
+    total_weight = sum(
+        category_weights[item['classification']]
+        for item in enhanced_evidence
+    )
+
+    weighted_score = (
+        round(
+            100 * sum(
+                category_weights[item['classification']]
+                * weights[item['status']]
+                for item in enhanced_evidence
+            ) / total_weight
+        )
+        if total_weight else 0
+    )
+
+    missing_required = [
+        item['requirement']
+        for item in enhanced_evidence
+        if item['classification'] == 'required'
+        and item['status'] == 'missing'
+    ]
+
     return {'job_title': title.strip(), 'recommended_resume': resume,
             'score': score, 'requirements_found': len(requirements),
-            'evidence': evidence, 'method': 'Offline keyword coverage (not AI semantic analysis)',
+            'evidence': evidence,
+             'enhanced_evidence': enhanced_evidence,
+             'weighted_score': weighted_score,
+             'missing_required': missing_required,
+             'weighted_method': 'Section-weighted keyword coverage',
+             'method': 'Offline keyword coverage (not AI semantic analysis)',
             'warning': ('No recognized requirements; score is not meaningful.' if not evidence else
-                        'Score reflects explicitly detected terms only; no inference of mandatory qualifications.')}
+                        'Matching uses recognized JD terms and explicit section headings. Required qualifications outside recognized sections may not be identified. Scores do not establish job eligibility.')}
