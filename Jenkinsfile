@@ -1,3 +1,4 @@
+
 pipeline {
     agent { label 'python-agent' }
 
@@ -11,6 +12,7 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -43,15 +45,28 @@ pipeline {
                 '''
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    docker build \
+                        -t ai-job-hunter-india:${BUILD_NUMBER} \
+                        -t ai-job-hunter-india:latest \
+                        .
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'AI Job Hunter CI pipeline passed.'
+            echo 'AI Job Hunter CI pipeline passed. Docker image built successfully.'
         }
+
         failure {
             echo 'AI Job Hunter CI pipeline failed.'
         }
+
         always {
             deleteDir()
         }
