@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "name": "Alex Example",
+  "professional_headline": "Fictional Product Owner",
+  "experience_summary": "Synthetic profile for automated testing only.",
+  "resume_preference": {
+    "primary": "po",
+    "secondary": "bsa"
+  },
+  "target_roles": {
+    "po": [
+      "Technical Product Owner"
+    ],
+    "bsa": [
+      "Technical Business Analyst"
+    ]
+  },
+  "search_preferences": {
+    "preferred_cities": [
+      "Pune"
+    ],
+    "remote_india": true,
+    "minimum_match_score": 60
+  },
+  "domains": [
+    "Banking"
+  ],
+  "certifications": [],
+  "skills": [
+    {
+      "name": "Product vision and strategy",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "Epics, features, user stories and acceptance criteria",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "SAFe 6.0, Scrum and PI Planning",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "SQL reconciliation and data validation",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "Snowflake",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "REST APIs, JSON and Postman",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "Kafka-based integration",
+      "category": "Test competency",
+      "evidence": "resume_documented",
+      "proficiency": "professional_experience",
+      "sources": [
+        "po",
+        "bsa"
+      ]
+    },
+    {
+      "name": "Databricks",
+      "category": "Test competency",
+      "evidence": "self_reported",
+      "proficiency": "unconfirmed",
+      "sources": []
+    },
+    {
+      "name": "MySQL",
+      "category": "Test competency",
+      "evidence": "self_reported",
+      "proficiency": "unconfirmed",
+      "sources": []
+    },
+    {
+      "name": "OAuth",
+      "category": "Test competency",
+      "evidence": "self_reported",
+      "proficiency": "unconfirmed",
+      "sources": []
+    }
+  ],
+  "experience": [],
+  "source_documents": {}
+}

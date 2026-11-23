@@ -36,3 +36,6 @@ resumes/
 
 # Local AI development agents
 .agents/
+
+# Allow synthetic CI test profile
+!tests/fixtures/candidate_profile.json

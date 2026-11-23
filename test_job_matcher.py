@@ -1,8 +1,9 @@
+from pathlib import Path
 import pytest
 from candidate_profile import load_profile
 from job_matcher import analyze_job
 
-PROFILE = load_profile()
+PROFILE = load_profile(Path(__file__).resolve().parent / "tests" / "fixtures" / "candidate_profile.json")
 
 def test_po_role():
     r = analyze_job('Technical Product Owner', 'Banking, Snowflake, SQL, Scrum, product roadmap, user stories', PROFILE)

@@ -1,3 +1,4 @@
+from pathlib import Path
 import copy
 import json
 import pytest
@@ -5,7 +6,7 @@ from candidate_profile import ProfileValidationError, choose_resume, load_profil
 
 
 def test_profile_loads_and_validates():
-    profile = load_profile()
+    profile = load_profile(Path(__file__).resolve().parent / "tests" / "fixtures" / "candidate_profile.json")
     assert profile["resume_preference"]["primary"] == "po"
     assert profile["resume_preference"]["secondary"] == "bsa"
     assert skills_by_evidence(profile, "resume_documented")
@@ -13,21 +14,21 @@ def test_profile_loads_and_validates():
 
 
 def test_resume_selection():
-    profile = load_profile()
+    profile = load_profile(Path(__file__).resolve().parent / "tests" / "fixtures" / "candidate_profile.json")
     assert choose_resume("Senior Technical Product Owner", profile) == "po"
     assert choose_resume("Technical Business Systems Analyst", profile) == "bsa"
     assert choose_resume("Unspecified Role", profile) == "po"
 
 
 def test_rejects_invalid_evidence():
-    profile = copy.deepcopy(load_profile())
+    profile = copy.deepcopy(load_profile(Path(__file__).resolve().parent / "tests" / "fixtures" / "candidate_profile.json"))
     profile["skills"][0]["evidence"] = "verified"
     with pytest.raises(ProfileValidationError):
         validate_profile(profile)
 
 
 def test_rejects_falsely_sourced_self_reported_skill():
-    profile = copy.deepcopy(load_profile())
+    profile = copy.deepcopy(load_profile(Path(__file__).resolve().parent / "tests" / "fixtures" / "candidate_profile.json"))
     skill = next(s for s in profile["skills"] if s["evidence"] == "self_reported")
     skill["sources"] = ["po"]
     with pytest.raises(ProfileValidationError):
