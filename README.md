@@ -2,13 +2,14 @@
 
 **A Python and Streamlit-based job discovery, filtering, matching, and application tracking platform for BFSI and technical product leadership opportunities in India.**
 
-**Current release:** Docker image v12 — PostgreSQL-enabled CI/CD deployment  
+**Latest source checkpoint:** `2f02efb` — Phase 6, Step 22.4.5.3 (November 23, 2026)  
+**Last verified deployment:** Docker image v15 — Jenkins build #15; newer checkpoint deployment pending verification  
 **Status:** Operational local deployment; rule-based discovery and matching  
 **Technology:** Python 3.11 · Streamlit · PostgreSQL 17 · SQLite · SQLAlchemy · Psycopg · Pytest · Docker · Colima · Jenkins · GitHub
 
-![Python](https://img.shields.io/badge/Python-3.11-blue) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue) ![Tests](https://img.shields.io/badge/verified_tests-59_passed-brightgreen) ![Jenkins](https://img.shields.io/badge/Jenkins-build_12_success-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.11-blue) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue) ![Tests](https://img.shields.io/badge/local_tests-181_passed-brightgreen) ![Jenkins](https://img.shields.io/badge/Jenkins-build_15_success-brightgreen)
 
-> Build and test badges describe the last verified release, not live CI status.
+> Badges distinguish the latest locally verified tests from the last verified CI deployment; they are not live CI status.
 
 ---
 
@@ -56,7 +57,7 @@ The application prioritizes opportunities in Bengaluru, Hyderabad, and Pune, alo
 - Identify repeated URLs and potentially overlapping postings.
 - Separate preview and validation from database persistence.
 
-### BFSI Relevance Ranking — Step 5.3
+### BFSI Relevance Ranking — Legacy Dashboard (Step 5.3)
 
 - Calculate deterministic relevance scores from available job information.
 - Evaluate BFSI, technical/data, seniority, and location signals.
@@ -65,7 +66,7 @@ The application prioritizes opportunities in Bengaluru, Hyderabad, and Pune, alo
 
 Ranking is advisory. It does not override eligibility or duplicate controls.
 
-**Current limitation:** CSV-based ranking uses available fields such as title and company rather than full job descriptions. The scoring algorithm is rule-based, not a trained machine-learning model.
+**Current limitation:** The existing Streamlit dashboard still displays legacy scoring. The new weighted ranking is integrated into the backend preview; dashboard enhancement is next. Optional CSV descriptions are now retained in discovery, but are not persisted in the database. Both scoring approaches are deterministic, not trained ML models.
 
 ### Controlled Job Import
 
@@ -81,6 +82,29 @@ Track job applications using the following statuses:
 `discovered` → `applied` → `interview` → `offer`
 
 Other supported outcomes include `rejected` and `skipped`.
+
+### Phase 6 — Multi-source discovery foundation
+
+- `job_sources.json` and `source_registry.py`: 18 configurable sources, validated registry and lookup helpers. Registered sources are disabled pending integration validation.
+- `company_master.json` and `company_master.py`: 122 employers across global and Indian banks, payments, fintech, banking technology, consulting/IT and financial services. Alias resolution and priority metadata support ranking, not a company whitelist.
+- `job_taxonomy.json` and `job_classifier.py`: 89 title entries across nine role families, 16 BFSI domains, seniority, skills and location evidence.
+- `job_ranker.py`: explainable 100-point relevance scoring, recommendations and per-component breakdowns.
+- Expanded eligibility uses whole-phrase title matching and blocks explicit junior/entry-level roles from import. Unknown employers remain supported. Incomplete records remain visible for review.
+- `smart_discovery.py` enriches every preview row with classification and ranking while retaining original row identity, normalized fields, optional description and existing eligibility/duplicate decisions.
+
+| Scoring component | Maximum points |
+|---|---:|
+| Role relevance | 30 |
+| BFSI relevance | 25 |
+| Seniority | 20 |
+| Skills relevance | 15 |
+| Location | 5 |
+| Employer preference | 5 |
+| Total | 100 |
+
+Recommendation bands: Excellent match (85+), Strong match (70+), Potential match (55+), Manual review (40+), Low relevance (below 40). Classification overrides can produce Manual review, Lower priority or Outside target independently of score. Scores are job relevance heuristics, not resume-fit probabilities.
+
+Role families include product ownership, product management, business systems analysis, business analysis, data products, AI products, banking leadership, product strategy and product analysis. BFSI coverage includes retail/commercial banking, cards, payments, AML transaction monitoring, fraud, KYC/sanctions, mortgage/HELOC, lending, credit risk, regulatory compliance, capital markets, wealth, insurance, digital banking and BFSI data/cloud/AI.
 
 ## 3. System Architecture
 
@@ -102,8 +126,8 @@ Other supported outcomes include `rejected` and `skipped`.
               (URL / Semantic Signals)
                          │
                          ▼
-                BFSI MATCH RANKING
-               (Rule-Based Scoring)
+             CLASSIFICATION & RANKING
+          (Taxonomy / Employer / 100 points)
                          │
                          ▼
                 STREAMLIT PREVIEW
@@ -125,7 +149,7 @@ Other supported outcomes include `rejected` and `skipped`.
                 JOB TRACKING DASHBOARD
 ```
 
-Public Greenhouse feed preview is also supported in the discovery module. It does not constitute unrestricted job-board scraping.
+Public Greenhouse feed preview is also supported in the discovery module. It does not constitute unrestricted job-board scraping. The new weighted scores are available in backend preview records; the UI still uses the legacy ranking presentation. Future source adapters will feed the same normalization and review pipeline.
 
 ## 4. Technology Stack
 
@@ -153,6 +177,14 @@ ai_job_hunter_step1/
 ├── smart_discovery.py
 ├── controlled_import.py
 ├── bfsi_filter.py
+├── source_registry.py
+├── job_sources.json
+├── company_master.py
+├── company_master.json
+├── job_taxonomy.json
+├── job_classifier.py
+├── job_ranker.py
+├── jd_requirements.py
 ├── migrate_sqlite_to_postgres.py
 │
 ├── pages/
@@ -168,6 +200,10 @@ ai_job_hunter_step1/
 ├── test_job_discovery.py
 ├── test_job_matcher.py
 ├── test_smart_discovery.py
+├── test_source_registry.py
+├── test_company_master.py
+├── test_job_classifier.py
+├── test_job_ranker.py
 │
 ├── Dockerfile
 ├── Jenkinsfile
@@ -266,7 +302,7 @@ Example:
 }
 ```
 
-Update these settings to change the role and location eligibility rules.
+The example above is abbreviated. The current rules file contains the expanded taxonomy titles. Keep rules.json synchronized with job_taxonomy.json when changing target roles. Location eligibility remains strict: preferred cities or confirmed Remote India. Explicit junior/entry-level titles are excluded from import; unknown employers are not excluded solely for being unknown.
 
 ## 8. CSV Job Import
 
@@ -282,7 +318,7 @@ Example fictional record:
 https://example.com/jobs/demo-001,Technical Product Owner,Demo Bank,Bengaluru,India,Hybrid
 ```
 
-Supported work modes include Remote, Hybrid, and Onsite.
+Supported work modes include Remote, Hybrid, and Onsite. An optional seventh column, `description`, is supported and preserved through normalization and preview for classification. The existing database schema stores the six required fields and status; description and ranking persistence are planned.
 
 The import process includes:
 
@@ -304,7 +340,16 @@ Run the complete test suite:
 python -m pytest -q
 ```
 
-**Latest verified CI result:** 59 tests passed in 0.98 seconds (Jenkins build #12, November 23, 2026, Eastern Time).
+**Latest local regression result:** 181 tests passed in 1.98 seconds at Step 22.4.5.3 (November 23, 2026). **Last verified CI result:** Jenkins build #15, 105 tests passed in 1.86 seconds. CI verification of the new checkpoint is pending.
+
+| Milestone | Passing tests |
+|---|---:|
+| PostgreSQL CI/CD baseline | 59 |
+| Source registry | 72 |
+| Company master | 105 |
+| Classification and ranking integration | 181 |
+
+Regression DEF-22.4.5-001: expanded Business Analyst eligibility inadvertently admitted a Junior Business Analyst. Centralized seniority classification corrected the issue without weakening the existing test.
 
 Tests cover core application behavior, candidate profiles, job matching, job discovery, smart discovery, controlled imports, and BFSI filtering.
 
@@ -527,6 +572,8 @@ Retain the legacy SQLite backup and version-specific rollback containers until a
 
 ## 15. Verified Release Evidence
 
+The following table preserves historical build #12 evidence. Subsequent verified builds #13, #14 and #15 succeeded; build #15 deployed `ai-job-hunter-india:15` from revision `884dc53`, with 105 passing tests, healthy application and PostgreSQL connectivity. The new source checkpoint has 181 local passing tests; its deployment is not yet verified.
+
 | Metric | Last verified result |
 |---|---|
 | Jenkins build | #12 — SUCCESS |
@@ -560,7 +607,17 @@ Build #11 failed safely because the Jenkins credential was missing. After adding
 | Infrastructure | Docker, Colima, Jenkins CI/CD | Completed |
 | Infrastructure | Live PostgreSQL cutover and secure deployment | Completed |
 | Step 5.4 | Enhanced resume-to-job matching | Planned |
-| Future | Expanded job-source integrations | Proposed |
+| 22.2 | Multi-source registry | Completed |
+| 22.3 | Company master | Completed |
+| 22.4.1–22.4.4 | Taxonomy, classification, ranking and unit tests | Completed |
+| 22.4.5.1–22.4.5.3 | Integration assessment, eligibility, descriptions and backend ranking | Completed |
+| 22.4.5.4 | Streamlit weighted ranking dashboard | Next |
+| 22.4.5.5 | End-to-end integration tests | Pending |
+| 22.4.6–22.4.7 | Final integration commit and CI/CD verification | Pending |
+| 22.5–22.6 | Live public API validation and Greenhouse/Lever/Ashby ingestion | Planned |
+| 22.7–22.10 | Gmail API, portal alerts, recruiter emails and attachments | Planned |
+| 22.11–22.12 | Permitted company career feeds and authorized search API | Planned |
+| 22.13 onward | Database enhancements, scheduling and monitoring | Planned |
 | Future | Semantic matching and AI-assisted recommendations | Proposed |
 | Future | Notifications and scheduled discovery | Proposed |
 | Future | Layered data ingestion and ETL orchestration | Proposed |
@@ -569,6 +626,10 @@ Build #11 failed safely because the Jenkins credential was missing. After adding
 | Future | Analytics, observability and AWS deployment | Proposed |
 
 Planned features are not yet implemented.
+
+### Live source strategy
+
+Registered sources include Naukri, LinkedIn, Indeed, Foundit, iimjobs, Hirist, Instahyre, Cutshort, recruiter email, email attachments, Greenhouse, Lever, Ashby, Workday, company careers, Adzuna, manual CSV and manual JD. Portal alerts will use authorized Gmail access; public ATS endpoints and employer feeds require source-specific validation. Public visibility does not imply permission for automated scraping. No login bypass or automatic applications are planned. Gmail OAuth credentials and tokens must remain outside source control and logs. The existing Greenhouse preview is basic; automated multi-source retrieval is not yet operational. Synthetic test URLs are fixtures, not live job results.
 
 ## 17. Project Objective
 
@@ -584,6 +645,8 @@ The project also demonstrates iterative product development, modular architectur
 
 **Repository:** [AI-Job-Hunter-India](https://github.com/Manojkmr7992/AI-Job-Hunter-India)
 
-**Last verified deployment:** v12 — November 23, 2026 (Eastern Time)
+**Last verified deployment:** v15 — November 23, 2026 (Eastern Time)  
+**Latest locally validated source:** `2f02efb` — 181 passing tests.  
+**Resume development at:** Step 22.4.5.4 — Streamlit weighted ranking dashboard.
 
 This project demonstrates hands-on technical product ownership across requirements, architecture, implementation, data persistence, acceptance testing, release management and operational validation. It is a personal portfolio project; planned AI capabilities are not represented as implemented.
