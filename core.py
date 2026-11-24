@@ -16,8 +16,25 @@ def load_rules(path=None):
 
 def evaluate(job, rules):
     """Return (eligible, explanation). This is intentionally strict and simple."""
-    title = job["title"].casefold()
-    if not any(target.casefold() in title for target in rules["target_titles"]):
+    from job_classifier import (
+        contains_phrase,
+        classify_seniority
+    )
+
+    title = job["title"]
+
+    seniority = classify_seniority(
+        title,
+        job.get("description", "")
+    )
+
+    if seniority["seniority"] == "lower_priority":
+        return False, "Junior or entry-level role"
+
+    if not any(
+        contains_phrase(title, target)
+        for target in rules["target_titles"]
+    ):
         return False, "Title does not match target roles"
     city = job["location"].casefold()
     mode = job["work_mode"].casefold()

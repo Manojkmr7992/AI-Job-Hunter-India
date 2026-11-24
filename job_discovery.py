@@ -28,7 +28,17 @@ def parse_csv(data: bytes) -> list[dict]:
             raise ValueError('Maximum 1000 job rows per import')
         if None in row:
             raise ValueError(f'Line {i}: too many columns')
-        rows.append({field: (row.get(field) or '').strip() for field in FIELDS})
+        job = {
+            field: (row.get(field) or '').strip()
+            for field in FIELDS
+        }
+
+        if 'description' in row:
+            job['description'] = (
+                row.get('description') or ''
+            ).strip()
+
+        rows.append(job)
     return rows
 
 
@@ -44,6 +54,11 @@ def normalize_job(job: dict) -> dict:
         cleaned['location'] = 'Bengaluru'
     if cleaned['location'].casefold() in ('hyderabad', 'pune'):
         cleaned['location'] = cleaned['location'].title()
+    if 'description' in job:
+        cleaned['description'] = str(
+            job.get('description') or ''
+        ).strip()
+
     return cleaned
 
 

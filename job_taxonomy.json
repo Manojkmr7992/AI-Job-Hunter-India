@@ -1,0 +1,414 @@
+{
+    "version": "1.0",
+    "country": "India",
+    "search_policy": {
+        "strategy": "role_first",
+        "restrict_to_company_master": false,
+        "allow_unknown_employers": true,
+        "prefer_senior_roles": true,
+        "require_senior_title": false,
+        "prefer_bfsi": true,
+        "retain_insufficient_evidence": true,
+        "target_locations": [
+            "Bengaluru",
+            "Bangalore",
+            "Hyderabad",
+            "Pune"
+        ],
+        "allow_remote_india": true
+    },
+    "role_families": {
+        "product_ownership": [
+            "Product Owner",
+            "Technical Product Owner",
+            "Senior Product Owner",
+            "Senior Technical Product Owner",
+            "Lead Product Owner",
+            "Principal Product Owner",
+            "Digital Product Owner",
+            "Platform Product Owner",
+            "Business Product Owner",
+            "Chief Product Owner"
+        ],
+        "product_management": [
+            "Product Manager",
+            "Technical Product Manager",
+            "Senior Product Manager",
+            "Senior Technical Product Manager",
+            "Lead Product Manager",
+            "Principal Product Manager",
+            "Digital Product Manager",
+            "Platform Product Manager",
+            "Group Product Manager",
+            "Technology Product Manager"
+        ],
+        "business_systems_analysis": [
+            "Business Systems Analyst",
+            "Business System Analyst",
+            "Senior Business Systems Analyst",
+            "Lead Business Systems Analyst",
+            "Principal Business Systems Analyst",
+            "Technical Business Systems Analyst",
+            "Business Systems Analysis Manager",
+            "Business Systems Consultant"
+        ],
+        "business_analysis": [
+            "Business Analyst",
+            "Senior Business Analyst",
+            "Lead Business Analyst",
+            "Principal Business Analyst",
+            "Technical Business Analyst",
+            "Business Analysis Manager",
+            "Business Analyst Lead",
+            "Business Analysis Specialist",
+            "Business Analyst Consultant",
+            "Business Analyst Senior Lead"
+        ],
+        "data_products": [
+            "Data Product Owner",
+            "Data Product Manager",
+            "Senior Data Product Manager",
+            "Lead Data Product Owner",
+            "Data Platform Product Manager",
+            "Analytics Product Manager",
+            "Data Engineering Product Owner",
+            "Data Governance Product Owner",
+            "Cloud Product Manager",
+            "Data Platform Product Owner"
+        ],
+        "ai_products": [
+            "AI Product Manager",
+            "AI Product Owner",
+            "AI Technical Product Manager",
+            "AI ML Product Manager",
+            "AI/ML Product Manager",
+            "GenAI Product Manager",
+            "Generative AI Product Manager",
+            "Agentic AI Product Manager",
+            "Machine Learning Product Manager",
+            "AI Platform Product Manager"
+        ],
+        "banking_leadership": [
+            "Technology Product Management Lead",
+            "Technology Product Management Senior Lead Analyst",
+            "Technology Product Management Lead Analyst",
+            "Technology Product Management Senior Analyst",
+            "Product Management Senior Lead",
+            "Product Management Lead Analyst",
+            "Product Management Senior Manager",
+            "AVP Product Owner",
+            "AVP Product Manager",
+            "VP Product Owner",
+            "VP Product Manager",
+            "Vice President Product Management",
+            "Product Management Director"
+        ],
+        "product_strategy": [
+            "Product Lead",
+            "Digital Product Lead",
+            "Product Director",
+            "Director of Product Management",
+            "Head of Product",
+            "Product Strategy Manager",
+            "Product Transformation Lead",
+            "Digital Transformation Lead",
+            "Banking Transformation Lead",
+            "Product Delivery Lead"
+        ],
+        "product_analysis": [
+            "Product Analyst",
+            "Senior Product Analyst",
+            "Lead Product Analyst",
+            "Principal Product Analyst",
+            "Technical Product Analyst",
+            "Product Management Analyst",
+            "Product Specialist",
+            "Senior Product Specialist"
+        ]
+    },
+    "seniority": {
+        "preferred": [
+            "senior",
+            "sr",
+            "lead",
+            "principal",
+            "staff",
+            "manager",
+            "senior manager",
+            "associate director",
+            "director",
+            "avp",
+            "assistant vice president",
+            "associate vice president",
+            "vp",
+            "vice president",
+            "svp",
+            "head",
+            "chief"
+        ],
+        "review": [
+            "associate",
+            "consultant",
+            "specialist",
+            "analyst",
+            "officer"
+        ],
+        "lower_priority": [
+            "junior",
+            "jr",
+            "intern",
+            "internship",
+            "graduate trainee",
+            "entry level",
+            "fresher"
+        ]
+    },
+    "bfsi_domains": {
+        "retail_banking": [
+            "retail banking",
+            "consumer banking",
+            "personal banking",
+            "checking account",
+            "savings account",
+            "deposit products"
+        ],
+        "commercial_banking": [
+            "commercial banking",
+            "corporate banking",
+            "business banking",
+            "treasury services",
+            "cash management",
+            "trade finance"
+        ],
+        "credit_debit_cards": [
+            "credit cards",
+            "debit cards",
+            "card issuing",
+            "card processing",
+            "card acquiring",
+            "card authorization",
+            "card lifecycle",
+            "card portfolio"
+        ],
+        "payments": [
+            "payments",
+            "digital payments",
+            "payment processing",
+            "payment gateway",
+            "payment rails",
+            "merchant acquiring",
+            "upi",
+            "ach",
+            "swift",
+            "iso 20022",
+            "real time payments",
+            "cross border payments"
+        ],
+        "aml_transaction_monitoring": [
+            "anti money laundering",
+            "aml",
+            "transaction monitoring",
+            "financial crime",
+            "suspicious activity",
+            "suspicious transaction",
+            "alert generation",
+            "aml surveillance",
+            "actimize"
+        ],
+        "fraud_detection": [
+            "fraud detection",
+            "fraud prevention",
+            "fraud monitoring",
+            "fraud risk",
+            "transaction fraud",
+            "account takeover",
+            "financial fraud",
+            "fraud analytics"
+        ],
+        "kyc_sanctions": [
+            "know your customer",
+            "kyc",
+            "customer due diligence",
+            "enhanced due diligence",
+            "sanctions screening",
+            "watchlist screening",
+            "customer onboarding",
+            "beneficial ownership"
+        ],
+        "mortgage_heloc": [
+            "mortgage",
+            "home lending",
+            "home equity",
+            "heloc",
+            "loan origination",
+            "mortgage servicing",
+            "home loan"
+        ],
+        "consumer_commercial_lending": [
+            "consumer lending",
+            "commercial lending",
+            "personal loans",
+            "business loans",
+            "loan servicing",
+            "loan management",
+            "digital lending",
+            "credit origination"
+        ],
+        "credit_risk": [
+            "credit risk",
+            "credit underwriting",
+            "credit decisioning",
+            "credit scoring",
+            "fico",
+            "risk modeling",
+            "portfolio risk",
+            "credit bureau",
+            "credit assessment"
+        ],
+        "regulatory_compliance": [
+            "regulatory compliance",
+            "banking compliance",
+            "regulatory reporting",
+            "bsa aml",
+            "pci dss",
+            "basel",
+            "ccar",
+            "cecl",
+            "fair lending",
+            "financial regulations",
+            "risk governance"
+        ],
+        "capital_markets": [
+            "capital markets",
+            "investment banking",
+            "securities",
+            "trade lifecycle",
+            "derivatives",
+            "fixed income",
+            "equities",
+            "market risk",
+            "trade settlement"
+        ],
+        "wealth_asset_management": [
+            "wealth management",
+            "asset management",
+            "investment management",
+            "portfolio management",
+            "mutual funds",
+            "custody services",
+            "fund administration"
+        ],
+        "insurance": [
+            "insurance",
+            "insurtech",
+            "policy administration",
+            "insurance underwriting",
+            "claims processing",
+            "life insurance",
+            "property and casualty"
+        ],
+        "core_digital_banking": [
+            "core banking",
+            "digital banking",
+            "mobile banking",
+            "internet banking",
+            "open banking",
+            "banking as a service",
+            "finacle",
+            "temenos",
+            "fintech"
+        ],
+        "bfsi_data_cloud_ai": [
+            "banking data platform",
+            "financial data platform",
+            "banking analytics",
+            "financial services analytics",
+            "banking cloud migration",
+            "banking data engineering",
+            "banking artificial intelligence",
+            "financial crime analytics",
+            "ai in banking",
+            "banking data governance",
+            "banking data warehouse",
+            "financial services data"
+        ]
+    },
+    "technical_skills": {
+        "data_engineering": [
+            "sql",
+            "python",
+            "pyspark",
+            "spark",
+            "etl",
+            "elt",
+            "data warehouse",
+            "data lake",
+            "lakehouse",
+            "snowflake",
+            "databricks",
+            "teradata",
+            "hadoop",
+            "kafka",
+            "airflow",
+            "data pipelines"
+        ],
+        "cloud": [
+            "aws",
+            "azure",
+            "gcp",
+            "amazon s3",
+            "aws glue",
+            "redshift",
+            "lambda",
+            "cloud migration"
+        ],
+        "artificial_intelligence": [
+            "artificial intelligence",
+            "machine learning",
+            "generative ai",
+            "agentic ai",
+            "llm",
+            "rag",
+            "ai agents",
+            "model governance",
+            "responsible ai"
+        ],
+        "product_management": [
+            "product vision",
+            "product strategy",
+            "product roadmap",
+            "product discovery",
+            "backlog management",
+            "stakeholder management",
+            "user stories",
+            "acceptance criteria",
+            "okr",
+            "kpi",
+            "agile",
+            "scrum",
+            "safe",
+            "jira",
+            "confluence"
+        ],
+        "business_analysis": [
+            "requirements gathering",
+            "business requirements",
+            "functional requirements",
+            "gap analysis",
+            "impact analysis",
+            "data mapping",
+            "source to target mapping",
+            "process modeling",
+            "uat",
+            "business process improvement"
+        ]
+    },
+    "ranking_weights": {
+        "role_relevance": 30,
+        "bfsi_relevance": 25,
+        "seniority": 20,
+        "skills_relevance": 15,
+        "location": 5,
+        "employer_preference": 5
+    }
+}

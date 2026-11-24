@@ -4,6 +4,8 @@ import re
 from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 from core import evaluate
 from job_discovery import normalize_job
+from job_classifier import load_taxonomy
+from job_ranker import rank_job
 
 TRACKING_PREFIXES = ('utm_',)
 TRACKING_KEYS = {'ref', 'source', 'src', 'fbclid', 'gclid', 'sid', 'xp', 'px', 'nignbevent_src'}
@@ -35,6 +37,8 @@ def preview_jobs(incoming: list[dict], existing: list[dict], rules: dict) -> lis
     urls = {u for job in existing if (u := canonical_url(job.get('url', '')))}
     fingerprints = {fingerprint(job) for job in existing}
     results = []
+    taxonomy = load_taxonomy()
+
     for number, raw in enumerate(incoming, 1):
         job = normalize_job(raw)
         url = canonical_url(job['url'])
@@ -50,7 +54,15 @@ def preview_jobs(incoming: list[dict], existing: list[dict], rules: dict) -> lis
         else:
             eligible, reason = evaluate(job, rules)
             decision = 'Eligible' if eligible else 'Excluded'
-        results.append({'row': number, 'decision': decision, 'reason': reason, **job})
+        ranking = rank_job(job, taxonomy)
+
+        results.append({
+            **ranking,
+            **job,
+            'row': number,
+            'decision': decision,
+            'reason': reason
+        })
         if url:
             urls.add(url)
         if all(key):
