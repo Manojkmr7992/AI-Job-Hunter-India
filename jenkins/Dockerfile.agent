@@ -1,0 +1,12 @@
+# Extend the existing Python 3.11 Jenkins agent
+FROM ai-job-hunter-jenkins-agent:python311
+
+USER root
+
+# Install Docker CLI for Jenkins CI builds
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends docker-cli \
+    && rm -rf /var/lib/apt/lists/*
+
+# Run Jenkins as a non-root user
+USER jenkins

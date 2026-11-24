@@ -1,0 +1,39 @@
+
+# Git and development tooling
+.git
+.github
+.agents
+.gitignore
+.DS_Store
+
+# Python environments and caches
+.venv/
+.venv*/
+.jenkins-venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Private configuration and candidate information
+.env
+.env.*
+!.env.example
+candidate_profile.json
+
+# Local databases and backups
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+
+# Testing and CI files
+test_*.py
+tests/
+Jenkinsfile
+
+# Local build artifacts
+build/
+dist/
+*.egg-info/
