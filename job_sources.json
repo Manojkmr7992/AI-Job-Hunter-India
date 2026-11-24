@@ -1,0 +1,150 @@
+{
+    "version": "1.0",
+    "country": "India",
+    "sources": [
+        {
+            "source_id": "naukri",
+            "source_name": "Naukri",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "linkedin",
+            "source_name": "LinkedIn",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "indeed",
+            "source_name": "Indeed",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "foundit",
+            "source_name": "Foundit",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "iimjobs",
+            "source_name": "iimjobs",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "hirist",
+            "source_name": "Hirist",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "instahyre",
+            "source_name": "Instahyre",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "cutshort",
+            "source_name": "Cutshort",
+            "category": "job_portal",
+            "integration_method": "gmail_alert",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "recruiter_email",
+            "source_name": "Direct Recruiter Email",
+            "category": "email",
+            "integration_method": "gmail_api",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "email_attachment",
+            "source_name": "Email Job Description Attachment",
+            "category": "email",
+            "integration_method": "gmail_attachment",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "greenhouse",
+            "source_name": "Greenhouse",
+            "category": "ats",
+            "integration_method": "public_api",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "lever",
+            "source_name": "Lever",
+            "category": "ats",
+            "integration_method": "public_api",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "ashby",
+            "source_name": "Ashby",
+            "category": "ats",
+            "integration_method": "public_api",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "workday",
+            "source_name": "Workday",
+            "category": "ats",
+            "integration_method": "authorized_feed",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "company_careers",
+            "source_name": "Company Career Websites",
+            "category": "direct_employer",
+            "integration_method": "authorized_connector",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "adzuna",
+            "source_name": "Adzuna",
+            "category": "job_aggregator",
+            "integration_method": "authorized_api",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "manual_csv",
+            "source_name": "Manual CSV Upload",
+            "category": "manual",
+            "integration_method": "csv",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        },
+        {
+            "source_id": "manual_jd",
+            "source_name": "Manual Job Description",
+            "category": "manual",
+            "integration_method": "text",
+            "enabled": false,
+            "configuration_status": "pending_validation"
+        }
+    ]
+}
