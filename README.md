@@ -2,9 +2,13 @@
 
 **A Python and Streamlit-based job discovery, filtering, matching, and application tracking platform for BFSI and technical product leadership opportunities in India.**
 
-**Current Release:** Step 5.3 — Smart Discovery, BFSI Ranking & Controlled Import  
-**Status:** Local development prototype  
-**Technology:** Python · Streamlit · PostgreSQL · SQLite · SQLAlchemy · Pytest
+**Current release:** Docker image v12 — PostgreSQL-enabled CI/CD deployment  
+**Status:** Operational local deployment; rule-based discovery and matching  
+**Technology:** Python 3.11 · Streamlit · PostgreSQL 17 · SQLite · SQLAlchemy · Psycopg · Pytest · Docker · Colima · Jenkins · GitHub
+
+![Python](https://img.shields.io/badge/Python-3.11-blue) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue) ![Tests](https://img.shields.io/badge/verified_tests-59_passed-brightgreen) ![Jenkins](https://img.shields.io/badge/Jenkins-build_12_success-brightgreen)
+
+> Build and test badges describe the last verified release, not live CI status.
 
 ---
 
@@ -165,6 +169,11 @@ ai_job_hunter_step1/
 ├── test_job_matcher.py
 ├── test_smart_discovery.py
 │
+├── Dockerfile
+├── Jenkinsfile
+├── .dockerignore
+├── jenkins/
+│   └── Dockerfile.agent
 ├── requirements.txt
 ├── rules.json
 ├── .env.example
@@ -295,11 +304,11 @@ Run the complete test suite:
 python -m pytest -q
 ```
 
-**Latest locally verified result:** 46 tests passed (November 21, 2026).
+**Latest verified CI result:** 59 tests passed in 0.98 seconds (Jenkins build #12, November 23, 2026, Eastern Time).
 
 Tests cover core application behavior, candidate profiles, job matching, job discovery, smart discovery, controlled imports, and BFSI filtering.
 
-This result reflects the locally tested Step 5.3 version; future changes should be validated through regression testing.
+CI explicitly selects SQLite and unsets DATABASE_URL so regression tests do not write to the deployed PostgreSQL database. Separate read-only PostgreSQL connectivity checks run before and after deployment.
 
 ## 10. Database Migration
 
@@ -336,7 +345,207 @@ The following must remain outside version control:
 
 The application does not automatically submit job applications or authenticate to restricted job portals.
 
-## 12. Development Roadmap
+## 12. Deployment Architecture and DevOps
+
+The project runs locally on macOS using Colima as the Docker runtime. GitHub hosts source code; Jenkins orchestrates builds and deployments. This is a local deployment, not an AWS-hosted or highly available production service.
+
+```mermaid
+flowchart TD
+    DEV["VS Code / Python / Git"] --> GH["GitHub main branch"]
+    GH -->|"SCM polling or manual build"| JC["Jenkins controller"]
+    JC --> JA["Jenkins agent: Python 3.11 + Docker CLI"]
+    JA --> TEST["Pytest: isolated SQLite"]
+    TEST --> IMG["Versioned Docker image"]
+    JC --> SEC["Jenkins Secret File"]
+    SEC --> PRE["PostgreSQL preflight"]
+    IMG --> PRE
+    PRE --> APP["Streamlit container"]
+    BROWSER["Local browser :8501"] --> APP
+    APP -->|"SQLAlchemy / Psycopg :5432"| PG["PostgreSQL 17"]
+    PG --> VOL[("Persistent Docker volume")]
+    APP --> HEALTH["HTTP + database verification"]
+    HEALTH -->|"Success"| TAG["Publish latest tag"]
+    HEALTH -->|"Failure"| RB["Attempt application rollback"]
+```
+
+### Infrastructure inventory
+
+| Component | Implementation | Purpose |
+|---|---|---|
+| Development | VS Code, Python virtual environment | Local development and debugging |
+| SQL client | SQLTools / psql | Database inspection and validation |
+| Source control | Git / GitHub, main branch | Versioned application and pipeline |
+| Container runtime | Docker on Colima | Local isolated services |
+| Application image | ai-job-hunter-india:12 | Python 3.11 slim Bookworm, non-root appuser |
+| Application container | ai-job-hunter-app | Streamlit runtime |
+| Jenkins controller | jenkins/jenkins:lts-jdk21 | Pipeline orchestration |
+| Jenkins agent | ai-job-hunter-jenkins-agent:docker | Python, Java and Docker CLI execution |
+| Database container | ai-job-hunter-postgres, postgres:17 | Persistent relational storage |
+| Application network | ai-job-hunter-network | Internal Docker DNS and database access |
+| Jenkins network | jenkins-network | Controller-to-agent communication |
+| Database volume | ai-job-hunter-pgdata | Persistent PostgreSQL data |
+
+### Service connections
+
+| Service | Host access | Internal connection |
+|---|---|---|
+| Streamlit | http://localhost:8501 | Container port 8501 |
+| Jenkins | http://localhost:8080 | Controller port 8080 |
+| Jenkins agent endpoint | 127.0.0.1:50000 | Controller port 50000; agent uses WebSocket |
+| PostgreSQL | 127.0.0.1:5433 | ai-job-hunter-postgres:5432 |
+
+Published ports are bound to loopback in the verified deployment. The Jenkins agent accesses the Docker daemon through its mounted socket; this is privileged access and must be restricted to trusted jobs and users.
+
+### CI/CD pipeline
+
+The declarative Groovy Jenkinsfile uses the python-agent label, disables concurrent builds, timestamps logs, and checks out source from GitHub. Poll SCM was configured with H/5 * * * *; manual builds are also supported. Automatic SCM triggering was verified before the PostgreSQL cutover; build #12 was manually triggered.
+
+| Stage | Responsibility |
+|---|---|
+| 1. Checkout | Retrieve the selected Git revision |
+| 2. Setup Python | Create a clean virtual environment |
+| 3. Install Dependencies | Install application and test packages |
+| 4. Run Python Tests | Run pytest with SQLite isolation |
+| 5. Build Docker Image | Tag image with Jenkins BUILD_NUMBER |
+| 6. Validate Deployment Prerequisites | Check network, database and existing application health, profile readability |
+| 7. Validate PostgreSQL Connectivity | Inject credentials and query database from new image |
+| 8. Deploy and Verify Application | Preserve previous container, deploy, check HTTP health and database access, tag latest |
+
+Post actions report success/failure and clean the workspace. Failed prerequisites prevent replacement of the existing application. Failed deployment triggers a best-effort application rollback; database changes are not automatically rolled back. Deployment replaces the container and is not zero-downtime.
+
+### Docker image and security
+
+- Base image: python:3.11-slim-bookworm.
+- Application runs as non-root appuser (UID 10001).
+- Streamlit health check uses /_stcore/health.
+- Candidate profile is mounted read-only from a private host file.
+- .dockerignore excludes private profiles, credentials, databases, virtual environments and test artifacts.
+- Versioned images support release traceability; latest is assigned after successful validation.
+
+## 13. PostgreSQL Architecture and Cutover
+
+The persistence layer selects SQLite or PostgreSQL using JOB_HUNTER_DB. PostgreSQL uses SQLAlchemy and Psycopg, with connection pool pre-ping. The deployed application uses PostgreSQL; SQLite remains available for local development and regression testing.
+
+| Database property | Value |
+|---|---|
+| Engine | PostgreSQL 17 |
+| Database | ai_job_hunter |
+| Schema | public |
+| Table | jobs |
+| Application role | job_hunter_user |
+| Host port | 5433 |
+| Container port | 5432 |
+| Persistent volume | ai-job-hunter-pgdata |
+
+The application role is not a superuser and has database CONNECT and schema USAGE/CREATE privileges for application-owned objects.
+
+### Current logical data model
+
+| Column | Type / constraint |
+|---|---|
+| id | Integer identity primary key |
+| url | Text, unique, not null |
+| title | Text, not null |
+| company | Text, not null |
+| location | Text, not null |
+| country | Text, not null |
+| work_mode | Text, not null |
+| status | Text, not null, default discovered |
+
+URL-based upsert prevents duplicate URLs and updates job attributes without resetting existing application status. The persistence layer supports initialization, insert/upsert, listing and status updates.
+
+### Migration and validation history
+
+- Provisioned PostgreSQL container, private network and persistent volume.
+- Created a restricted application role and initialized the jobs table.
+- Verified local Python and container-to-database connectivity.
+- Reconciled SQLite and PostgreSQL: both initially contained zero jobs; no record transfer was necessary.
+- Validated application persistence operations with temporary test records and cleanup.
+- Suspended Jenkins during cutover; created a SQLite backup and preserved the original container.
+- Deployed the existing image with PostgreSQL configuration, verified health and database connectivity.
+- Updated Jenkinsfile, configured Secret File credentials and successfully deployed image v12.
+
+### Credential management
+
+Store actual environment files outside the repository, for example under ~/.config/ai-job-hunter/ with restrictive permissions (600). Use different database hosts for local Python and container execution.
+
+Example container configuration (placeholders only):
+
+```dotenv
+JOB_HUNTER_DB=postgres
+DATABASE_URL=postgresql+psycopg://YOUR_USER:YOUR_URL_ENCODED_PASSWORD@ai-job-hunter-postgres:5432/ai_job_hunter
+```
+
+For local Python connecting to the container, use 127.0.0.1:5433 instead.
+
+Jenkins uses a Secret File credential with ID ai-job-hunter-postgres-env, bound temporarily through withCredentials and passed to Docker using --env-file. Shell tracing is disabled around secret handling. Docker administrators can still inspect container environment variables; do not grant untrusted users Docker access.
+
+## 14. Operational Runbook
+
+These commands assume the local infrastructure has already been provisioned. Fresh installations must create the database, role, Docker network, volume, private profile and Jenkins controller/agent configuration first. The Jenkinsfile profile bind path is machine-specific and must be adapted for other hosts.
+
+```bash
+# Start the local Docker runtime if stopped
+colima start
+
+# Inspect running services
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+
+# Build a local application image
+docker build -t ai-job-hunter-india:local .
+
+# Check deployed application
+docker inspect ai-job-hunter-app --format 'Image={{.Config.Image}} Health={{.State.Health.Status}} Network={{.HostConfig.NetworkMode}}'
+curl --fail http://localhost:8501/_stcore/health
+
+# Verify database using the local container
+docker exec ai-job-hunter-postgres psql -U job_hunter_user -d ai_job_hunter -P pager=off -c "SELECT current_database(), current_user, COUNT(*) AS total_jobs FROM public.jobs;"
+
+# Inspect application logs
+docker logs --tail 50 ai-job-hunter-app
+
+# Inspect rollback containers
+docker ps -a --filter name=ai-job-hunter-app
+```
+
+### Release workflow
+
+Review changes locally, run pytest, commit intended files and push to GitHub. Jenkins polls for SCM changes or can be triggered manually through the dashboard. Review console output and confirm the deployed image, HTTP health and database connectivity.
+
+### Troubleshooting
+
+| Symptom | Action |
+|---|---|
+| Docker unavailable | Check Colima and Docker daemon status |
+| Jenkins agent offline | Inspect agent logs and controller connectivity |
+| Missing credential ID | Create the matching Jenkins Secret File credential |
+| PostgreSQL connection failure | Check network, hostname, port, role and protected environment file |
+| Unhealthy application | Review container logs and rollback status |
+| Legacy Docker builder warning | Plan a BuildKit/buildx upgrade; warning did not block build #12 |
+
+Retain the legacy SQLite backup and version-specific rollback containers until a controlled retention policy is established. Back up PostgreSQL independently; a persistent volume is not a backup.
+
+## 15. Verified Release Evidence
+
+| Metric | Last verified result |
+|---|---|
+| Jenkins build | #12 — SUCCESS |
+| Application source revision | db448fb |
+| Regression tests | 59 passed |
+| Pipeline stages | 8 of 8 passed |
+| Approximate logged execution window | 44 seconds |
+| Deployed image | ai-job-hunter-india:12 |
+| Application health | healthy |
+| PostgreSQL health | healthy |
+| Database connection | ai_job_hunter / job_hunter_user |
+| Job records at validation | 0 |
+| HTTP health response | ok |
+| Previous application | ai-job-hunter-app-rollback-12 |
+| Legacy SQLite container | ai-job-hunter-app-sqlite-backup |
+
+Build #11 failed safely because the Jenkins credential was missing. After adding the credential, build #12 completed successfully without further application code changes. Rollback is implemented but a forced deployment-failure recovery test has not been documented.
+
+## 16. Development Roadmap
 
 | Milestone | Capability | Status |
 |---|---|---|
@@ -348,15 +557,20 @@ The application does not automatically submit job applications or authenticate t
 | Step 5.1 | Smart discovery and duplicate classification | Completed |
 | Step 5.2 | Controlled import with user approval | Completed |
 | Step 5.3 | BFSI relevance ranking | Implemented; automated tests passed |
+| Infrastructure | Docker, Colima, Jenkins CI/CD | Completed |
+| Infrastructure | Live PostgreSQL cutover and secure deployment | Completed |
 | Step 5.4 | Enhanced resume-to-job matching | Planned |
 | Future | Expanded job-source integrations | Proposed |
 | Future | Semantic matching and AI-assisted recommendations | Proposed |
 | Future | Notifications and scheduled discovery | Proposed |
-| Future | Analytics and deployment | Proposed |
+| Future | Layered data ingestion and ETL orchestration | Proposed |
+| Future | LLMs, embeddings, RAG and vector search | Proposed |
+| Future | Agentic AI with human approval | Proposed |
+| Future | Analytics, observability and AWS deployment | Proposed |
 
 Planned features are not yet implemented.
 
-## 13. Project Objective
+## 17. Project Objective
 
 The long-term objective is to evolve this application from a local, rules-driven job tracking prototype into an explainable, AI-assisted career opportunity platform.
 
@@ -370,6 +584,6 @@ The project also demonstrates iterative product development, modular architectur
 
 **Repository:** [AI-Job-Hunter-India](https://github.com/Manojkmr7992/AI-Job-Hunter-India)
 
-**Current version:** Step 5.3
+**Last verified deployment:** v12 — November 23, 2026 (Eastern Time)
 
-CI/CD automatic trigger test - November 23, 2026
+This project demonstrates hands-on technical product ownership across requirements, architecture, implementation, data persistence, acceptance testing, release management and operational validation. It is a personal portfolio project; planned AI capabilities are not represented as implemented.
