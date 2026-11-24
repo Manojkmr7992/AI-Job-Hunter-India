@@ -650,3 +650,53 @@ The project also demonstrates iterative product development, modular architectur
 **Resume development at:** Step 22.4.5.4 — Streamlit weighted ranking dashboard.
 
 This project demonstrates hands-on technical product ownership across requirements, architecture, implementation, data persistence, acceptance testing, release management and operational validation. It is a personal portfolio project; planned AI capabilities are not represented as implemented.
+
+## Phase 6 - Live Job Discovery
+
+### Implemented capabilities
+
+- Greenhouse, Lever and Ashby public API connectors.
+- 18 configured employer boards, 10 verified and enabled.
+- 122-employer master directory.
+- 115 target job titles across 9 role families.
+- 16 BFSI domain classifications.
+- Role-first and seniority screening.
+- Location and work-mode normalization.
+- Weighted ranking and classification evidence.
+- Suppressed job records audit.
+- User-approved controlled imports.
+- Duplicate prevention and post-import re-ranking.
+- SSL certificate verification using certifi.
+
+### Local validation - November 24, 2026
+
+- Existing application tests: 181
+- Screening regression tests: 12
+- Connector and normalization tests: 37
+- Controlled import integration tests: 6
+- Total automated tests: 236 passed
+- Dependency consistency: Passed
+
+### Live screening validation
+
+- India candidates: 183
+- Unrelated roles suppressed: 181
+- Junior roles suppressed: 0
+- Retained for ranking: 2
+- Screening reconciliation: Passed
+
+### Known limitations
+
+- Current employer sources have limited product-role coverage.
+- Missing work-mode information requires manual review.
+- Full screening recall has not been established.
+- Controlled import integration tests use simulated persistence.
+- Deployment validation remains pending.
+
+### Next implementation priorities
+
+1. Google Cloud and Gmail API integration.
+2. Naukri job alert ingestion.
+3. LinkedIn job alert ingestion.
+4. Banking and consulting employer career integrations.
+5. Recruiter email and job description extraction.
