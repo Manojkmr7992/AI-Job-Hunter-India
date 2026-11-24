@@ -14,7 +14,8 @@ pipeline {
         APP_NAME = 'ai-job-hunter-app'
         IMAGE_NAME = 'ai-job-hunter-india'
 
-        DB_FILE = '/Users/manojkavuluru/.local/share/ai-job-hunter-india/jobs.sqlite3'
+        POSTGRES_CONTAINER = 'ai-job-hunter-postgres'
+        APP_NETWORK = 'ai-job-hunter-network'
 
         PROFILE_FILE = '/Users/manojkavuluru/Documents/AI-Job-Hunter-India/ai_job_hunter_step1/candidate_profile.json'
     }
@@ -46,7 +47,6 @@ pipeline {
                     set -eu
 
                     .jenkins-venv/bin/python -m pip install -r requirements.txt
-
                     .jenkins-venv/bin/python -m pip install pytest
                 '''
             }
@@ -56,6 +56,9 @@ pipeline {
             steps {
                 sh '''
                     set -eu
+
+                    export JOB_HUNTER_DB=sqlite
+                    unset DATABASE_URL
 
                     .jenkins-venv/bin/python -m pytest -q
                 '''
@@ -69,7 +72,6 @@ pipeline {
 
                     docker build \
                         -t "${IMAGE_NAME}:${BUILD_NUMBER}" \
-                        -t "${IMAGE_NAME}:latest" \
                         .
                 '''
             }
@@ -80,127 +82,252 @@ pipeline {
                 sh '''
                     set -eu
 
-                    # Confirm both host files exist and are readable.
-                    # Docker resolves these paths on the Docker host.
-                    docker run --rm \
-                        --entrypoint /bin/sh \
-                        --mount "type=bind,source=${DB_FILE},target=/data/jobs.sqlite3,readonly" \
-                        --mount "type=bind,source=${PROFILE_FILE},target=/data/candidate_profile.json,readonly" \
-                        "${IMAGE_NAME}:${BUILD_NUMBER}" \
-                        -c 'test -f /data/jobs.sqlite3 && test -r /data/jobs.sqlite3 && test -f /data/candidate_profile.json && test -r /data/candidate_profile.json'
+                    docker network inspect "${APP_NETWORK}" >/dev/null
 
-                    # Require an existing healthy application before
-                    # the first automated replacement.
+                    test "$(docker inspect \
+                        --format '{{.State.Health.Status}}' \
+                        "${POSTGRES_CONTAINER}")" = "healthy"
+
                     test "$(docker inspect \
                         --format '{{.State.Health.Status}}' \
                         "${APP_NAME}")" = "healthy"
 
-                    echo "Deployment prerequisites verified."
+                    docker run --rm \
+                        --entrypoint /bin/sh \
+                        --mount "type=bind,source=${PROFILE_FILE},target=/data/candidate_profile.json,readonly" \
+                        "${IMAGE_NAME}:${BUILD_NUMBER}" \
+                        -c 'test -f /data/candidate_profile.json && test -r /data/candidate_profile.json'
+
+                    echo "PASS: Deployment prerequisites verified."
                 '''
+            }
+        }
+
+        stage('Validate PostgreSQL Connectivity') {
+            steps {
+                withCredentials([
+                    file(
+                        credentialsId: 'ai-job-hunter-postgres-env',
+                        variable: 'PG_ENV_FILE'
+                    )
+                ]) {
+                    sh '''
+                        set +x
+                        set -eu
+
+                        docker run --rm -i \
+                            --network "${APP_NETWORK}" \
+                            --env-file "${PG_ENV_FILE}" \
+                            --entrypoint python \
+                            "${IMAGE_NAME}:${BUILD_NUMBER}" - <<'PY'
+from postgres_store import postgres_enabled, engine
+from sqlalchemy import text
+
+assert postgres_enabled(), "PostgreSQL backend disabled"
+
+with engine().connect() as conn:
+    database = conn.execute(
+        text("SELECT current_database()")
+    ).scalar_one()
+
+    user = conn.execute(
+        text("SELECT current_user")
+    ).scalar_one()
+
+    assert database == "ai_job_hunter"
+    assert user == "job_hunter_user"
+
+    count = conn.execute(
+        text("SELECT COUNT(*) FROM public.jobs")
+    ).scalar_one()
+
+    print("Database:", database)
+    print("Connected user:", user)
+    print("Job records:", count)
+
+print("PASS: PostgreSQL connectivity verified.")
+PY
+                    '''
+                }
             }
         }
 
         stage('Deploy and Verify Application') {
             steps {
-                sh '''
-                    set -eu
+                withCredentials([
+                    file(
+                        credentialsId: 'ai-job-hunter-postgres-env',
+                        variable: 'PG_ENV_FILE'
+                    )
+                ]) {
+                    sh '''
+                        set +x
+                        set -eu
 
-                    rollback_name="${APP_NAME}-rollback"
+                        rollback_name="${APP_NAME}-rollback-${BUILD_NUMBER}"
 
-                    # Ensure the existing application is healthy.
-                    old_status=$(docker inspect \
-                        --format '{{.State.Health.Status}}' \
-                        "${APP_NAME}")
-
-                    if [ "$old_status" != "healthy" ]; then
-                        echo "Existing application is not healthy."
-                        exit 1
-                    fi
-
-                    # Clear a previous rollback container only after
-                    # verifying the current application is healthy.
-                    if docker container inspect "$rollback_name" >/dev/null 2>&1; then
-                        docker rm -f "$rollback_name"
-                    fi
-
-                    # Save the current application as rollback.
-                    docker stop "${APP_NAME}"
-                    docker rename "${APP_NAME}" "$rollback_name"
-
-                    # Any failure after this point restores the old app.
-                    rollback() {
-                        echo "Deployment failed. Restoring previous application."
-
-                        docker rm -f "${APP_NAME}" 2>/dev/null || true
+                        test "$(docker inspect \
+                            --format '{{.State.Health.Status}}' \
+                            "${APP_NAME}")" = "healthy"
 
                         if docker container inspect "$rollback_name" >/dev/null 2>&1; then
-                            docker rename "$rollback_name" "${APP_NAME}"
-                            docker start "${APP_NAME}"
-
-                            echo "Previous application restarted."
-                        else
-                            echo "ERROR: Rollback container missing."
-                        fi
-                    }
-
-                    trap 'rollback' EXIT
-
-                    # Start the newly built application.
-                    docker run -d \
-                        --name "${APP_NAME}" \
-                        --restart unless-stopped \
-                        --network bridge \
-                        --publish 127.0.0.1:8501:8501 \
-                        --env JOB_HUNTER_DB=sqlite \
-                        --mount "type=bind,source=${DB_FILE},target=/app/jobs.sqlite3" \
-                        --mount "type=bind,source=${PROFILE_FILE},target=/app/candidate_profile.json,readonly" \
-                        "${IMAGE_NAME}:${BUILD_NUMBER}"
-
-                    echo "Waiting for application health check."
-
-                    healthy=0
-
-                    for attempt in $(seq 1 45); do
-                        status=$(docker inspect \
-                            --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-healthcheck{{end}}' \
-                            "${APP_NAME}")
-
-                        echo "Health check ${attempt}: ${status}"
-
-                        if [ "$status" = "healthy" ]; then
-                            healthy=1
-                            break
+                            echo "Rollback container already exists."
+                            exit 1
                         fi
 
-                        if [ "$status" = "unhealthy" ] || \
-                           [ "$status" = "no-healthcheck" ]; then
-                            break
-                        fi
+                        old_id=$(docker inspect \
+                            --format '{{.Id}}' "${APP_NAME}")
 
-                        sleep 2
-                    done
+                        rollback() {
+                            rc=$?
 
-                    if [ "$healthy" -ne 1 ]; then
-                        echo "New application failed its health check."
-                        exit 1
-                    fi
+                            trap - EXIT
+                            set +e
 
-                    # New deployment succeeded.
-                    # Disable automatic rollback.
-                    trap - EXIT
+                            if [ "$rc" -eq 0 ]; then
+                                exit 0
+                            fi
 
-                    echo "Application deployed successfully."
-                    echo "Previous container retained for rollback."
-                '''
+                            echo "Deployment failed. Attempting rollback."
+
+                            if docker container inspect "$rollback_name" >/dev/null 2>&1; then
+
+                                current_id=$(docker inspect \
+                                    --format '{{.Id}}' "${APP_NAME}" 2>/dev/null || true)
+
+                                if [ -n "$current_id" ] && [ "$current_id" != "$old_id" ]; then
+                                    docker rm -f "${APP_NAME}"
+                                fi
+
+                                docker rename "$rollback_name" "${APP_NAME}" &&
+                                docker start "${APP_NAME}"
+
+                            else
+                                docker start "$old_id"
+                            fi
+
+                            restored=0
+
+                            for attempt in $(seq 1 45); do
+
+                                status=$(docker inspect \
+                                    --format '{{.State.Health.Status}}' \
+                                    "${APP_NAME}" 2>/dev/null || true)
+
+                                if [ "$status" = "healthy" ]; then
+                                    restored=1
+                                    break
+                                fi
+
+                                sleep 2
+                            done
+
+                            if [ "$restored" -eq 1 ]; then
+                                echo "Previous application restored and healthy."
+                            else
+                                echo "ERROR: Rollback requires manual intervention."
+                            fi
+
+                            exit "$rc"
+                        }
+
+                        trap rollback EXIT
+                        trap 'exit 130' INT
+                        trap 'exit 143' TERM
+
+                        echo "Preserving existing application."
+
+                        docker stop "${APP_NAME}"
+                        docker rename "${APP_NAME}" "$rollback_name"
+
+                        echo "Deploying PostgreSQL-enabled application."
+
+                        docker run -d \
+                            --name "${APP_NAME}" \
+                            --restart unless-stopped \
+                            --network "${APP_NETWORK}" \
+                            --publish 127.0.0.1:8501:8501 \
+                            --env-file "${PG_ENV_FILE}" \
+                            --mount "type=bind,source=${PROFILE_FILE},target=/app/candidate_profile.json,readonly" \
+                            "${IMAGE_NAME}:${BUILD_NUMBER}"
+
+                        echo "Waiting for application health check."
+
+                        healthy=0
+
+                        for attempt in $(seq 1 45); do
+
+                            status=$(docker inspect \
+                                --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}no-healthcheck{{end}}' \
+                                "${APP_NAME}")
+
+                            echo "Health check ${attempt}: ${status}"
+
+                            if [ "$status" = "healthy" ]; then
+                                healthy=1
+                                break
+                            fi
+
+                            if [ "$status" = "unhealthy" ] || \
+                               [ "$status" = "no-healthcheck" ]; then
+                                break
+                            fi
+
+                            sleep 2
+                        done
+
+                        test "$healthy" -eq 1
+
+                        echo "Validating deployed PostgreSQL backend."
+
+                        docker exec -i "${APP_NAME}" python - <<'PY'
+from core import list_jobs
+from postgres_store import postgres_enabled, engine
+from sqlalchemy import text
+
+assert postgres_enabled(), "PostgreSQL backend disabled"
+
+with engine().connect() as conn:
+
+    database = conn.execute(
+        text("SELECT current_database()")
+    ).scalar_one()
+
+    user = conn.execute(
+        text("SELECT current_user")
+    ).scalar_one()
+
+    assert database == "ai_job_hunter"
+    assert user == "job_hunter_user"
+
+    print("Database:", database)
+    print("Connected user:", user)
+
+print("Application job count:", len(list_jobs()))
+print("PASS: Application PostgreSQL backend verified.")
+PY
+
+                        docker tag \
+                            "${IMAGE_NAME}:${BUILD_NUMBER}" \
+                            "${IMAGE_NAME}:latest"
+
+                        trap - EXIT INT TERM
+
+                        echo "Application deployed successfully."
+                        echo "Rollback container: $rollback_name"
+                    '''
+                }
             }
         }
     }
 
     post {
+
         success {
             echo 'SUCCESS: CI/CD pipeline completed.'
-            echo 'Python tests passed.'
-            echo 'Docker image built.'
+            echo 'Python regression tests passed.'
+            echo 'Docker image built successfully.'
+            echo 'PostgreSQL connectivity verified.'
             echo 'Application deployed and healthy.'
             echo 'Application URL: http://localhost:8501'
         }
