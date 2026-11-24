@@ -1,0 +1,1984 @@
+{
+    "version": "1.0",
+    "country": "India",
+    "companies": [
+        {
+            "company_id": "citi",
+            "company_name": "Citi",
+            "aliases": [
+                "Citigroup",
+                "Citibank"
+            ],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "jpmorgan_chase",
+            "company_name": "JPMorgan Chase",
+            "aliases": [
+                "JPMC",
+                "JP Morgan"
+            ],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bank_of_america",
+            "company_name": "Bank of America",
+            "aliases": [
+                "BofA"
+            ],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "wells_fargo",
+            "company_name": "Wells Fargo",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "goldman_sachs",
+            "company_name": "Goldman Sachs",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "morgan_stanley",
+            "company_name": "Morgan Stanley",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "hsbc",
+            "company_name": "HSBC",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "barclays",
+            "company_name": "Barclays",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "standard_chartered",
+            "company_name": "Standard Chartered",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "deutsche_bank",
+            "company_name": "Deutsche Bank",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "ubs",
+            "company_name": "UBS",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bnp_paribas",
+            "company_name": "BNP Paribas",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "societe_generale",
+            "company_name": "Societe Generale",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "natwest_group",
+            "company_name": "NatWest Group",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "northern_trust",
+            "company_name": "Northern Trust",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "state_street",
+            "company_name": "State Street",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bny",
+            "company_name": "BNY",
+            "aliases": [
+                "BNY Mellon",
+                "Bank of New York Mellon"
+            ],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "dbs_bank",
+            "company_name": "DBS Bank",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "anz",
+            "company_name": "ANZ",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "commonwealth_bank",
+            "company_name": "Commonwealth Bank",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "nomura",
+            "company_name": "Nomura",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "mufg",
+            "company_name": "MUFG",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "mizuho",
+            "company_name": "Mizuho",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "credit_agricole",
+            "company_name": "Credit Agricole",
+            "aliases": [],
+            "category": "global_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "hdfc_bank",
+            "company_name": "HDFC Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "icici_bank",
+            "company_name": "ICICI Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "axis_bank",
+            "company_name": "Axis Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "kotak_mahindra_bank",
+            "company_name": "Kotak Mahindra Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "state_bank_of_india",
+            "company_name": "State Bank of India",
+            "aliases": [
+                "SBI"
+            ],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "idfc_first_bank",
+            "company_name": "IDFC FIRST Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "indusind_bank",
+            "company_name": "IndusInd Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "yes_bank",
+            "company_name": "YES Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "federal_bank",
+            "company_name": "Federal Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "au_small_finance_bank",
+            "company_name": "AU Small Finance Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bandhan_bank",
+            "company_name": "Bandhan Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "rbl_bank",
+            "company_name": "RBL Bank",
+            "aliases": [],
+            "category": "indian_bank",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "visa",
+            "company_name": "Visa",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "mastercard",
+            "company_name": "Mastercard",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "american_express",
+            "company_name": "American Express",
+            "aliases": [
+                "Amex"
+            ],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "paypal",
+            "company_name": "PayPal",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "discover",
+            "company_name": "Discover",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "worldpay",
+            "company_name": "Worldpay",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "stripe",
+            "company_name": "Stripe",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "adyen",
+            "company_name": "Adyen",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "global_payments",
+            "company_name": "Global Payments",
+            "aliases": [],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "npci",
+            "company_name": "NPCI",
+            "aliases": [
+                "National Payments Corporation of India"
+            ],
+            "category": "payments",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "razorpay",
+            "company_name": "Razorpay",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "phonepe",
+            "company_name": "PhonePe",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "paytm",
+            "company_name": "Paytm",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "pine_labs",
+            "company_name": "Pine Labs",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "cashfree_payments",
+            "company_name": "Cashfree Payments",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "cred",
+            "company_name": "CRED",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "groww",
+            "company_name": "Groww",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "zerodha",
+            "company_name": "Zerodha",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bharatpe",
+            "company_name": "BharatPe",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "juspay",
+            "company_name": "Juspay",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "zeta",
+            "company_name": "Zeta",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "navi",
+            "company_name": "Navi",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "fi_money",
+            "company_name": "Fi Money",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "jupiter",
+            "company_name": "Jupiter",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "moneyview",
+            "company_name": "Moneyview",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "lendingkart",
+            "company_name": "Lendingkart",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "perfios",
+            "company_name": "Perfios",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "m2p_fintech",
+            "company_name": "M2P Fintech",
+            "aliases": [],
+            "category": "fintech",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "fis",
+            "company_name": "FIS",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "fiserv",
+            "company_name": "Fiserv",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "temenos",
+            "company_name": "Temenos",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "finastra",
+            "company_name": "Finastra",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "oracle_financial_services",
+            "company_name": "Oracle Financial Services",
+            "aliases": [
+                "OFSS"
+            ],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "nice_actimize",
+            "company_name": "NICE Actimize",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "sas",
+            "company_name": "SAS",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "feedzai",
+            "company_name": "Feedzai",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "quantexa",
+            "company_name": "Quantexa",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bottomline",
+            "company_name": "Bottomline",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "intellect_design_arena",
+            "company_name": "Intellect Design Arena",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "infosys_finacle",
+            "company_name": "Infosys Finacle",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "tcs_bancs",
+            "company_name": "TCS BaNCS",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "fenergo",
+            "company_name": "Fenergo",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "experian",
+            "company_name": "Experian",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "transunion",
+            "company_name": "TransUnion",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "equifax",
+            "company_name": "Equifax",
+            "aliases": [],
+            "category": "banking_technology",
+            "priority": "high",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "accenture",
+            "company_name": "Accenture",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "deloitte",
+            "company_name": "Deloitte",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "pwc",
+            "company_name": "PwC",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "ey",
+            "company_name": "EY",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "kpmg",
+            "company_name": "KPMG",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "ibm",
+            "company_name": "IBM",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "capgemini",
+            "company_name": "Capgemini",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "cognizant",
+            "company_name": "Cognizant",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "ltimindtree",
+            "company_name": "LTIMindtree",
+            "aliases": [
+                "LTM",
+                "LTI Mindtree"
+            ],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "tcs",
+            "company_name": "TCS",
+            "aliases": [
+                "Tata Consultancy Services"
+            ],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "infosys",
+            "company_name": "Infosys",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "wipro",
+            "company_name": "Wipro",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "hcltech",
+            "company_name": "HCLTech",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "tech_mahindra",
+            "company_name": "Tech Mahindra",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "cgi",
+            "company_name": "CGI",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "epam_systems",
+            "company_name": "EPAM Systems",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "publicis_sapient",
+            "company_name": "Publicis Sapient",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "virtusa",
+            "company_name": "Virtusa",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "persistent_systems",
+            "company_name": "Persistent Systems",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "genpact",
+            "company_name": "Genpact",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "ntt_data",
+            "company_name": "NTT DATA",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "mphasis",
+            "company_name": "Mphasis",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "synechron",
+            "company_name": "Synechron",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "ust",
+            "company_name": "UST",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "hexaware",
+            "company_name": "Hexaware",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "valuemomentum",
+            "company_name": "ValueMomentum",
+            "aliases": [],
+            "category": "consulting_it_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "fidelity_investments",
+            "company_name": "Fidelity Investments",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "charles_schwab",
+            "company_name": "Charles Schwab",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "blackrock",
+            "company_name": "BlackRock",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "franklin_templeton",
+            "company_name": "Franklin Templeton",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "invesco",
+            "company_name": "Invesco",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "sandp_global",
+            "company_name": "S&P Global",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "moodys",
+            "company_name": "Moody's",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "msci",
+            "company_name": "MSCI",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "lseg",
+            "company_name": "LSEG",
+            "aliases": [
+                "London Stock Exchange Group"
+            ],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "broadridge",
+            "company_name": "Broadridge",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "bajaj_finance",
+            "company_name": "Bajaj Finance",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "tata_capital",
+            "company_name": "Tata Capital",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "aditya_birla_capital",
+            "company_name": "Aditya Birla Capital",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "mahindra_finance",
+            "company_name": "Mahindra Finance",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        },
+        {
+            "company_id": "cholamandalam_finance",
+            "company_name": "Cholamandalam Finance",
+            "aliases": [],
+            "category": "financial_services",
+            "priority": "medium",
+            "target_country": "India",
+            "target_locations": [
+                "Bengaluru",
+                "Hyderabad",
+                "Pune"
+            ],
+            "enabled": true,
+            "career_url": null,
+            "integration_status": "pending_validation"
+        }
+    ]
+}
